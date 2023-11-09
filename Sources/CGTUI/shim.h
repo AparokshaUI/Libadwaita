@@ -343,6 +343,7 @@ gtui_window_set_transient_for (uint64_t window, uint64_t parent)
   g_assert (GTK_IS_WINDOW (GTK_WINDOW ((void *)window)));
   g_assert (GTK_IS_WINDOW (GTK_WINDOW ((void *)parent)));
 
+  gtk_window_set_modal (window, TRUE);
   gtk_window_set_transient_for (window, parent);
 }
 
