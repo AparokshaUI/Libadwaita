@@ -1185,6 +1185,24 @@ gtui_overlaysplitview_set_content (uint64_t overlaysplitview, uint64_t content)
   adw_overlay_split_view_set_content (overlaysplitview, content);
 }
 
+static void
+gtui_overlaysplitview_show_sidebar (uint64_t overlaysplitview)
+{
+  g_assert_nonnull (overlaysplitview);
+  g_assert (ADW_IS_OVERLAY_SPLIT_VIEW (ADW_OVERLAY_SPLIT_VIEW ((void *)overlaysplitview)));
+
+  adw_overlay_split_view_set_show_sidebar (overlaysplitview, TRUE);
+}
+
+static void
+gtui_overlaysplitview_hide_sidebar (uint64_t overlaysplitview)
+{
+  g_assert_nonnull (overlaysplitview);
+  g_assert (ADW_IS_OVERLAY_SPLIT_VIEW (ADW_OVERLAY_SPLIT_VIEW ((void *)overlaysplitview)));
+
+  adw_overlay_split_view_set_show_sidebar (overlaysplitview, FALSE);
+}
+
 static uint64_t
 gtui_create_toolbarview (uint64_t content)
 {

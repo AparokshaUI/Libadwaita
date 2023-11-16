@@ -113,13 +113,13 @@ public class MyApplication: Application {
       view: tabView
     )
     let listBox = ListBox()
-    let splitView = NavigationSplitView().content(
+    let splitView = OverlaySplitView().content(
       NavigationView().add(contentView, title: "Test").add(
         ToolbarView(StatusPage().title("Navigation View")).addTopBar(HeaderBar()),
         title: "Navigation Page"
-      ),
-      title: "Test"
-    ).sidebar(
+      )
+    )
+    _ = splitView.sidebar(
       ToolbarView(
         listBox.append(Label("Hello").halign(.start).padding()).append(
           Label("World").halign(.start).padding()
@@ -128,7 +128,7 @@ public class MyApplication: Application {
         (HeaderBar().append(
           MenuButton(icon: .default(icon: .openMenu)).menu { menu in
             _ = menu.append("New Window", id: "win.new").append("Test Closure", app: self) {
-              print("Hello, world!")
+              splitView.hideSidebar()
             }.append(
               "More",
               submenu: .init().append("Close Window", window: win, shortcut: "w".ctrl()) {
@@ -140,8 +140,7 @@ public class MyApplication: Application {
             )
           }
         ))
-      ),
-      title: "Sidebar"
+      )
     )
     win.setChild(splitView)
     win.setDefaultSize(width: 700, height: 500)
