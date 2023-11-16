@@ -26,4 +26,9 @@ public class MenuButton: NativeWidgetPeer {
     edit(menu)
     return self
   }
+
+  public func menu(_ menu: Menu) -> Self {
+    gtui_menubutton_set_menu(self.nativePtr, menu.nativePtr)
+    return self
+  }
 }
