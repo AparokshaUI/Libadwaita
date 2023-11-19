@@ -2147,6 +2147,15 @@ gtui_window_set_deletability (uint64_t ptr, gboolean setting)
 }
 
 static void
+gtui_window_set_title (uint64_t ptr, const char *title)
+{
+  g_assert_nonnull (ptr);
+  GtkWindow *window = (void *)ptr;
+  g_assert (GTK_IS_WINDOW (window));
+  gtk_window_set_title (GTK_WINDOW (window), title);
+}
+
+static void
 gtui_set_hexpand (uint64_t widget, gboolean enabled)
 {
   g_assert (GTK_IS_WIDGET (widget));

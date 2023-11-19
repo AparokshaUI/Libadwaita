@@ -28,6 +28,10 @@ public class Window: NativePeer {
     gtui_window_set_transient_for(self.nativePtr, window.nativePtr)
   }
 
+  public func setTitle(_ title: String) {
+    gtui_window_set_title(self.nativePtr, title.cString)
+  }
+
   public func maximize() { gtui_window_maximize(self.nativePtr) }
 
   public func unmaximize() { gtui_window_unmaximize(self.nativePtr) }
