@@ -2030,7 +2030,8 @@ gtui_listbox_remove (uint64_t box, uint64_t widget)
   g_assert (GTK_IS_LIST_BOX (GTK_LIST_BOX ((void *)box)));
   g_assert (GTK_IS_WIDGET (GTK_WIDGET ((void *)widget)));
 
-  gtk_list_box_remove ((GtkListBox *)box, (GtkWidget *)widget);
+  GtkWidget *parent = gtk_widget_get_parent (widget);
+  gtk_list_box_remove ((GtkListBox *)box, parent);
 }
 
 static char *
@@ -2263,6 +2264,13 @@ gtui_add_css_class (uint64_t widget, const char *css_class)
 {
   g_assert (GTK_IS_WIDGET (widget));
   gtk_widget_add_css_class (widget, css_class);
+}
+
+static void
+gtui_set_sensitive (uint64_t widget, gboolean sensitive)
+{
+  g_assert (GTK_IS_WIDGET (widget));
+  gtk_widget_set_sensitive (widget, sensitive);
 }
 
 static void

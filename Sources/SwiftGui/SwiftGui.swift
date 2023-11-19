@@ -211,7 +211,7 @@ public class MyApplication: Application {
         ).add(passwordEntryRow).headerSuffix(
           Button("Print").handler {
             print("\(entryRow.contents()), \(passwordEntryRow.contents())")
-          }.padding()
+          }.padding().sensitive(false)
         )
       )
     )

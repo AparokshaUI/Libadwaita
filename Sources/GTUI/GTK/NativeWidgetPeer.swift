@@ -50,4 +50,9 @@ open class NativeWidgetPeer: NativePeer {
     gtui_add_css_class(self.nativePtr, style.cString)
     return self
   }
+
+  public func sensitive(_ sensitive: Bool = true) -> NativeWidgetPeer {
+    gtui_set_sensitive(self.nativePtr, sensitive.cBool)
+    return self
+  }
 }
