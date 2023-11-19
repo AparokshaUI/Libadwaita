@@ -56,6 +56,8 @@ public class ListBox: NativeWidgetPeer, InsertableContainer {
     return self
   }
 
+  public func remove(at index: Int) -> Self { removeWidgets([peers[index]]) }
+
   public func getContent() -> [NativeWidgetPeer] { return peers }
 
   public func selectRow(at index: Int) { gtui_listbox_select_row(self.nativePtr, index.cInt) }
