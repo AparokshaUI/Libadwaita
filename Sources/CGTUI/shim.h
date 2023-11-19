@@ -103,6 +103,15 @@ gtui_application_add_keyboard_shortcut (uint64_t    ptr,
   gtk_application_set_accels_for_action (app, full_id, shortcuts);
 }
 
+static uint64_t
+gtui_application_get_active_window (uint64_t application)
+{
+  g_assert_nonnull (application);
+  g_assert (GTK_IS_APPLICATION (GTK_APPLICATION (application)));
+
+  return (uint64_t)gtk_application_get_active_window (application);
+}
+
 static void
 gtui_application_window_run_action_handler (gpointer user_data)
 {

@@ -25,6 +25,10 @@ open class Application: NativePeer {
 
   public func run() { gtui_run_application(self.nativePtr, unsafeBitCast(self, to: UInt64.self)) }
   public func quit() { gtui_quit_application(self.nativePtr) }
+
+  public func getActiveWindow() -> UInt64? {
+    gtui_application_get_active_window(self.nativePtr)
+  }
 }
 
 @_cdecl("application_on_activate_cb") func application_on_activate_cb(
