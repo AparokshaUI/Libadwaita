@@ -1,8 +1,8 @@
-format:
-	clang-format -i Sources/CGTUI/shim.h  --style=file
-	swift-format -i --recursive Package.swift Sources/ Tests/
-lint:
-	swiftlint --progress Sources/ Tests/ Package.swift
-clean:
-	swift package clean
+docs:
+	@sourcedocs generate --min-acl private -r --spm-module Libadwaita
 
+swiftlint:
+	@swiftlint --autocorrect
+
+format:
+	@clang-format -i Sources/CGTUI/shim.h  --style=file
