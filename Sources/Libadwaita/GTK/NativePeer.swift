@@ -9,7 +9,7 @@
 open class NativePeer {
 
     /// The native pointer.
-    public internal(set) var nativePtr: UInt64 = 0
+    public var nativePtr: UInt64 = 0
     /// Additional information about the object.
     public var fields: [String: Any] = [:]
 }

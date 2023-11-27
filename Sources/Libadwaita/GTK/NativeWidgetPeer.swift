@@ -16,6 +16,11 @@ open class NativeWidgetPeer: NativePeer {
     /// The widget's width.
     public var width: Int { .init(gtui_get_width(self.nativePtr)) }
 
+    /// Initialize a native widget peer.
+    override public init() {
+        super.init()
+    }
+
     /// Set whether the widget expands horizontally.
     /// - Parameter enabled: Whether the widget expands horizontally.
     /// - Returns: The widget.

@@ -14,6 +14,10 @@ The widget's height.
 The widget's width.
 
 ## Methods
+### `init()`
+
+Initialize a native widget peer.
+
 ### `hexpand(_:)`
 
 Set whether the widget expands horizontally.
