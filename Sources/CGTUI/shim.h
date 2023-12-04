@@ -20,6 +20,10 @@ checkbutton_on_toggle_cb (void *, void *);
 static void
 entryrow_on_submit_cb (void *, void *);
 static void
+filedialog_on_open_cb (void *, void *, void *);
+static void
+filedialog_on_save_cb (void *, void *, void *);
+static void
 messagedialog_on_click_cb (void *, void *, void *);
 static void
 splitbutton_on_click_cb (void *, void *);
@@ -2054,6 +2058,103 @@ gtui_textview_contents (uint64_t textview)
   buffer = gtk_text_view_get_buffer (textview);
   gtk_text_buffer_get_bounds (buffer, &start, &end);
   return gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+}
+
+static uint64_t
+gtui_create_filedialog ()
+{
+  return (uint64_t)gtk_file_dialog_new ();
+}
+
+static void
+gtui_filedialog_set_accepted_extensions (uint64_t dialog, const char **extensions)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (extensions);
+  g_assert (GTK_IS_FILE_DIALOG ((GtkFileChooserDialog *)(uintptr_t)dialog));
+
+  GtkFileFilter *filter = gtk_file_filter_new ();
+
+  for (int i = 0; extensions[i] != NULL; ++i)
+    {
+      gtk_file_filter_add_suffix (filter, extensions[i]);
+    }
+  gtk_file_dialog_set_default_filter (dialog, filter);
+}
+
+static void
+gtui_filedialog_accept_all_extensions (uint64_t dialog)
+{
+  g_assert_nonnull (dialog);
+  g_assert (GTK_IS_FILE_DIALOG ((GtkFileChooserDialog *)(uintptr_t)dialog));
+  gtk_file_dialog_set_default_filter (dialog, NULL);
+}
+
+static void
+gtui_filedialog_set_initial_name (uint64_t dialog, const char *name)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (name);
+  g_assert (GTK_IS_FILE_DIALOG ((GtkFileChooserDialog *)(uintptr_t)dialog));
+
+  gtk_file_dialog_set_initial_name (dialog, name);
+}
+
+static void
+gtui_filedialog_set_initial_folder (uint64_t dialog, const char *path)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (path);
+  g_assert (GTK_IS_FILE_DIALOG ((GtkFileChooserDialog *)(uintptr_t)dialog));
+
+  GFile *file = g_file_new_for_path (path);
+  gtk_file_dialog_set_initial_folder (dialog, file);
+}
+
+static void
+gtui_filedialog_save_finish (uint64_t dialog, uint64_t result, uint64_t data)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (data);
+  g_assert (GTK_IS_FILE_DIALOG (GTK_FILE_DIALOG ((void *)dialog)));
+
+  GFile      *file = gtk_file_dialog_save_finish (dialog, result, NULL);
+  const char *path = g_file_get_path (file);
+  filedialog_on_save_cb (dialog, path, data);
+}
+
+static void
+gtui_filedialog_save (uint64_t dialog, uint64_t data, uint64_t window)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (data);
+  g_assert (GTK_IS_FILE_DIALOG (GTK_FILE_DIALOG ((void *)dialog)));
+
+  swift_retain (data);
+  gtk_file_dialog_save (dialog, window, NULL, G_CALLBACK (gtui_filedialog_save_finish), (void *)data);
+}
+
+static void
+gtui_filedialog_open_finish (uint64_t dialog, uint64_t result, uint64_t data)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (data);
+  g_assert (GTK_IS_FILE_DIALOG (GTK_FILE_DIALOG ((void *)dialog)));
+
+  GFile      *file = gtk_file_dialog_open_finish (dialog, result, NULL);
+  const char *path = g_file_get_path (file);
+  filedialog_on_open_cb (dialog, path, data);
+}
+
+static void
+gtui_filedialog_open (uint64_t dialog, uint64_t data, uint64_t window)
+{
+  g_assert_nonnull (dialog);
+  g_assert_nonnull (data);
+  g_assert (GTK_IS_FILE_DIALOG (GTK_FILE_DIALOG ((void *)dialog)));
+
+  swift_retain (data);
+  gtk_file_dialog_open (dialog, window, NULL, G_CALLBACK (gtui_filedialog_open_finish), (void *)data);
 }
 
 static void

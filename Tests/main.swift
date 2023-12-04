@@ -301,6 +301,13 @@ public class MyApplication: Application {
         win.show()
         preferencesWindow.show()
         preferencesWindow.add(toast: .init("Toast!"))
+        let dialog = FileDialog(nil)
+        dialog.setExtensions(["py"])
+        dialog.open { url in
+            print(url)
+        } onClose: {
+            print("Close")
+        }
     }
 }
 
