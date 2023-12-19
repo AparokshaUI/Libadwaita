@@ -21,9 +21,11 @@ public class Button: NativeWidgetPeer {
     public init(_ label: String) {
         super.init()
         self.nativePtr = gtui_create_button(label.cString)
-        let selfAddr = unsafeBitCast(self, to: UInt64.self)
-        gtui_button_init_signals(self.nativePtr, selfAddr)
+        initSignals()
     }
+
+    /// Initialize a button.
+    override init() { super.init() }
 
     // swiftlint:disable function_default_parameter_at_end
     /// Initialize a button with an icon and optionally a label.
@@ -36,6 +38,12 @@ public class Button: NativeWidgetPeer {
         if let content { gtui_button_set_child(self.nativePtr, content.nativePtr) }
     }
     // swiftlint:enable function_default_parameter_at_end
+
+    /// Initialize the button's signals.
+    func initSignals() {
+        let selfAddr = unsafeBitCast(self, to: UInt64.self)
+        gtui_button_init_signals(self.nativePtr, selfAddr)
+    }
 
     /// Add a handler for the button.
     /// - Parameter handler: The button's handler.

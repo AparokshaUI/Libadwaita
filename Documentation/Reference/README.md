@@ -57,6 +57,7 @@
 -   [TitleBarWidget](classes/TitleBarWidget.md)
 -   [Toast](classes/Toast.md)
 -   [ToastOverlay](classes/ToastOverlay.md)
+-   [ToggleButton](classes/ToggleButton.md)
 -   [ToolbarView](classes/ToolbarView.md)
 -   [Window](classes/Window.md)
 

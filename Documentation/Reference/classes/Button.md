@@ -19,12 +19,20 @@ The button content, if there is no label set directly.
 Initialize a button with a label.
 - Parameter label: The label.
 
+### `init()`
+
+Initialize a button.
+
 ### `init(_:icon:)`
 
 Initialize a button with an icon and optionally a label.
 - Parameters:
   - label: The label.
   - icon: The icon.
+
+### `initSignals()`
+
+Initialize the button's signals.
 
 ### `handler(_:)`
 

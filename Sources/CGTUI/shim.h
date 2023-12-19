@@ -525,6 +525,21 @@ gtui_checkbutton_set_inconsistent (uint64_t button, gboolean inconsistent)
 }
 
 static uint64_t
+gtui_create_togglebutton (const char *label)
+{
+  return (uint64_t)gtk_toggle_button_new_with_label (label);
+}
+
+static void
+gtui_togglebutton_set_active (uint64_t button, gboolean active)
+{
+  g_assert_nonnull (button);
+  g_assert (GTK_IS_TOGGLE_BUTTON (GTK_TOGGLE_BUTTON ((void *)button)));
+
+  gtk_toggle_button_set_active (button, active);
+}
+
+static uint64_t
 gtui_create_title_bar_widget (const char *title, const char *subtitle)
 {
   return (uint64_t)adw_window_title_new (strdup (title), strdup (subtitle));
