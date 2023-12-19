@@ -32,6 +32,14 @@ public class OverlaySplitView: NativeWidgetPeer {
         return self
     }
 
+    /// Set the position of the sidebar.
+    /// - Parameter trailing: Whether the sidebar is at the trailing position.
+    /// - Returns: The overlay split view.
+    public func position(trailing: Bool = false) -> OverlaySplitView {
+        gtui_overlaysplitview_set_position(self.nativePtr, trailing.cBool)
+        return self
+    }
+
     /// Show the sidebar.
     public func showSidebar() { gtui_overlaysplitview_show_sidebar(self.nativePtr) }
 

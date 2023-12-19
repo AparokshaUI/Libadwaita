@@ -174,6 +174,7 @@ public class MyApplication: Application {
                     title: "Navigation Page"
                 )
         )
+        var trailing = false
         _ = splitView.sidebar(
             ToolbarView(
                 listBox
@@ -188,8 +189,9 @@ public class MyApplication: Application {
                         MenuButton(icon: .default(icon: .openMenu)).menu { menu in
                             _ = menu
                                 .append("New Window", id: "win.new")
-                                .append("Test Closure", app: self) {
-                                    splitView.hideSidebar()
+                                .append("Move Sidebar", app: self) {
+                                    splitView.position(trailing: !trailing)
+                                    trailing.toggle()
                                 }
                                 .append(
                                     "More",

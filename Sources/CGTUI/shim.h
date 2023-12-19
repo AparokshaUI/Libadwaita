@@ -1199,6 +1199,22 @@ gtui_overlaysplitview_set_content (uint64_t overlaysplitview, uint64_t content)
 }
 
 static void
+gtui_overlaysplitview_set_position (uint64_t overlaysplitview, gboolean trailing)
+{
+  g_assert_nonnull (overlaysplitview);
+  g_assert (ADW_IS_OVERLAY_SPLIT_VIEW (ADW_OVERLAY_SPLIT_VIEW ((void *)overlaysplitview)));
+
+  if (trailing)
+    {
+      adw_overlay_split_view_set_sidebar_position (overlaysplitview, GTK_PACK_END);
+    }
+  else
+    {
+      adw_overlay_split_view_set_sidebar_position (overlaysplitview, GTK_PACK_START);
+    }
+}
+
+static void
 gtui_overlaysplitview_show_sidebar (uint64_t overlaysplitview)
 {
   g_assert_nonnull (overlaysplitview);
