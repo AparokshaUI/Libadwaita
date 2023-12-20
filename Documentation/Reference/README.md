@@ -64,6 +64,7 @@
 ## Enums
 
 -   [Alignment](enums/Alignment.md)
+-   [Clipboard](enums/Clipboard.md)
 -   [Edge](enums/Edge.md)
 -   [Icon](enums/Icon.md)
 -   [Icon.DefaultIcon](enums/Icon.DefaultIcon.md)

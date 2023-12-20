@@ -193,6 +193,10 @@ public class MyApplication: Application {
                                     splitView.position(trailing: !trailing)
                                     trailing.toggle()
                                 }
+                                .append("Copy", app: self) {
+                                    print("Copy")
+                                    Clipboard.copy("Test Text")
+                                }
                                 .append(
                                     "More",
                                     submenu: .init()

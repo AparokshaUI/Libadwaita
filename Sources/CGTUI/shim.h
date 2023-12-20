@@ -2421,3 +2421,10 @@ gtui_label_set_text (uint64_t widget, const char *text)
 
   gtk_label_set_text (widget, text);
 }
+
+static void
+gtui_clipboard_copy (const char *text)
+{
+  GdkClipboard *clipboard = gdk_display_get_clipboard (gdk_display_get_default ());
+  gdk_clipboard_set_text (clipboard, text);
+}
