@@ -16,6 +16,9 @@ open class NativeWidgetPeer: NativePeer {
     /// The widget's width.
     public var width: Int { .init(gtui_get_width(self.nativePtr)) }
 
+    /// The closure that gets executed when the widget is being clicked.
+    var clickClosure: () -> Void = { }
+
     /// Initialize a native widget peer.
     override public init() {
         super.init()
@@ -110,4 +113,33 @@ open class NativeWidgetPeer: NativePeer {
         gtui_set_sensitive(self.nativePtr, sensitive.cBool)
         return self
     }
+
+    /// Set a closure that is executed when the widget is being clicked.
+    /// - Parameter closure: The closure.
+    /// - Returns: The widget.
+    public func onClick(closure: @escaping () -> Void) -> NativeWidgetPeer {
+        clickClosure = closure
+        let selfAddr = unsafeBitCast(self, to: UInt64.self)
+        gtui_init_signals(self.nativePtr, selfAddr)
+        return self
+    }
+}
+
+/// Run when the widget gets clicked.
+/// - Parameters:
+///   - ptr: The pointer.
+///   - numberOfPress: Number of press that is paired with this release.
+///   - xCoordinate: The X coordinate.
+///   - yCoordinate: The Y coordinate.
+///   - userData: The widget data.
+@_cdecl("on_click_cb")
+func on_click_cb(
+    ptr: UnsafeMutableRawPointer,
+    numberOfPress: Int64,
+    xCoordinate: Double,
+    yCoordinate: Double,
+    userData: UnsafeMutableRawPointer
+) {
+    let widget = Unmanaged<NativeWidgetPeer>.fromOpaque(userData).takeUnretainedValue()
+    widget.clickClosure()
 }

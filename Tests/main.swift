@@ -44,7 +44,9 @@ public class MyApplication: Application {
     func toastOverlay(win: Window) -> ToastOverlay {
         var toastOverlay = ToastOverlay(Label(""))
         let carousel = Carousel()
-            .append(StatusPage().title("Hello").description("Page 1").hexpand().frame(minHeight: 300))
+            .append(StatusPage().title("Hello").description("Page 1").hexpand().frame(minHeight: 300).onClick {
+                print("Click!")
+            })
             .append(StatusPage().title("World").description("Page 2").hexpand())
             .insert(Label("Inserted Page"), at: 0)
         let banner = Banner("Okay, so let's close the window.")

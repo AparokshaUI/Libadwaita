@@ -26,6 +26,8 @@ filedialog_on_save_cb (void *, void *, void *);
 static void
 messagedialog_on_click_cb (void *, void *, void *);
 static void
+on_click_cb (void *, void *, void *, void *, void *);
+static void
 splitbutton_on_click_cb (void *, void *);
 static uint64_t
 taboverview_on_create_tab_cb (void *, void *);
@@ -2412,6 +2414,23 @@ gtui_set_sensitive (uint64_t widget, gboolean sensitive)
 {
   g_assert (GTK_IS_WIDGET (widget));
   gtk_widget_set_sensitive (widget, sensitive);
+}
+
+static void
+gtui_init_signals (uint64_t wdgt, uint64_t data)
+{
+  GtkWidget *widget;
+
+  g_assert_nonnull (wdgt);
+  g_assert_nonnull (data);
+  g_assert (GTK_IS_WIDGET (GTK_WIDGET ((void *)wdgt)));
+
+  widget = GTK_WIDGET (wdgt);
+  swift_retain (data);
+
+  GtkGestureClick *event_controller = gtk_gesture_click_new ();
+  gtk_widget_add_controller (widget, event_controller);
+  g_signal_connect (event_controller, "released", G_CALLBACK (on_click_cb), (void *)data);
 }
 
 static void

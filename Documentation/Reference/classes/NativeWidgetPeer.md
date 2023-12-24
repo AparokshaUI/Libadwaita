@@ -13,6 +13,10 @@ The widget's height.
 
 The widget's width.
 
+### `clickClosure`
+
+The closure that gets executed when the widget is being clicked.
+
 ## Methods
 ### `init()`
 
@@ -74,4 +78,10 @@ Add a style class to the widget.
 
 Enable or disable the widget.
 - Parameter sensitive: Whether the widget is enabled or disabled.
+- Returns: The widget.
+
+### `onClick(closure:)`
+
+Set a closure that is executed when the widget is being clicked.
+- Parameter closure: The closure.
 - Returns: The widget.
