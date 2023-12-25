@@ -35,6 +35,8 @@ static void
 tabbutton_on_click_cb (void *, void *);
 static void
 toast_on_click_cb (void *, void *);
+static void
+viewswitcher_on_select_cb (void *, void *, void *);
 static gboolean
 window_close_cb (void *, void *);
 static void
@@ -1354,6 +1356,92 @@ gtui_editable_set_contents (uint64_t editable, const char *contents)
   g_assert (GTK_IS_EDITABLE (GTK_EDITABLE ((void *)editable)));
 
   return gtk_editable_set_text (editable, contents);
+}
+
+static uint64_t
+gtui_create_viewswitcher ()
+{
+  AdwViewSwitcher *switcher = adw_view_switcher_new ();
+  adw_view_switcher_set_stack (switcher, adw_view_stack_new ());
+  return (uint64_t)switcher;
+}
+
+static void
+gtui_viewswitcher_init_signals (uint64_t swtchr, uint64_t data)
+{
+  AdwViewSwitcher *switcher;
+
+  g_assert_nonnull (swtchr);
+  g_assert_nonnull (data);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)swtchr)));
+
+  switcher = ADW_VIEW_SWITCHER (swtchr);
+  AdwViewStack *stack = adw_view_switcher_get_stack (switcher);
+  swift_retain (data);
+  g_signal_connect (stack, "notify::visible-child", G_CALLBACK (viewswitcher_on_select_cb), (void *)data);
+}
+
+static void
+gtui_viewswitcher_add_view (uint64_t switcher, uint64_t child, const char *title, const char *icon)
+{
+  g_assert_nonnull (switcher);
+  g_assert_nonnull (child);
+  g_assert_nonnull (title);
+  g_assert_nonnull (icon);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)switcher)));
+  g_assert (GTK_IS_WIDGET (GTK_WIDGET ((void *)child)));
+
+  AdwViewStack *stack = adw_view_switcher_get_stack (switcher);
+  adw_view_stack_add_titled_with_icon (stack, child, title, title, icon);
+}
+
+static void
+gtui_viewswitcher_remove_view (uint64_t switcher, const char *title)
+{
+  g_assert_nonnull (switcher);
+  g_assert_nonnull (title);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)switcher)));
+
+  AdwViewStack *stack = adw_view_switcher_get_stack (switcher);
+  GtkWidget    *widget = adw_view_stack_get_child_by_name (stack, title);
+  adw_view_stack_remove (stack, widget);
+}
+
+static void
+gtui_viewswitcher_set_wide_design (uint64_t switcher, gboolean wide)
+{
+  g_assert_nonnull (switcher);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)switcher)));
+
+  if (wide)
+    {
+      adw_view_switcher_set_policy (switcher, ADW_VIEW_SWITCHER_POLICY_WIDE);
+    }
+  else
+    {
+      adw_view_switcher_set_policy (switcher, ADW_VIEW_SWITCHER_POLICY_NARROW);
+    }
+}
+
+static const char *
+gtui_viewswitcher_get_selection (uint64_t switcher)
+{
+  g_assert_nonnull (switcher);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)switcher)));
+
+  AdwViewStack *stack = adw_view_switcher_get_stack (switcher);
+  return adw_view_stack_get_visible_child_name (stack);
+}
+
+static void
+gtui_viewswitcher_select (uint64_t switcher, const char *title)
+{
+  g_assert_nonnull (switcher);
+  g_assert_nonnull (title);
+  g_assert (ADW_IS_VIEW_SWITCHER (ADW_VIEW_SWITCHER ((void *)switcher)));
+
+  AdwViewStack *stack = adw_view_switcher_get_stack (switcher);
+  adw_view_stack_set_visible_child_name (stack, title);
 }
 
 static uint64_t

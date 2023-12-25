@@ -154,12 +154,21 @@ public class MyApplication: Application {
         }
         let contentView = TabOverview().createTabHandler { createTab() }
         let box = Box(horizontal: false)
+        let switcher = ViewSwitcher()
         _ = contentView.add(
             ToolbarView(box.append(tabView.append(title: "Initial View", self.toastOverlay(win: win))))
                 .addTopBar(
                     HeaderBar()
                         .packStart(helloButton())
-                        .titleWidget(TitleBarWidget("Title", "Subtitle"))
+                        .titleWidget(
+                            switcher
+                                .addOption(title: "Test", icon: .default(icon: .actionUnavailable))
+                                .addOption(title: "Case", icon: .default(icon: .addressBookNew))
+                                .wideDesign()
+                                .onSelect {
+                                    print(switcher.getSelection())
+                                }
+                        )
                         .packEnd(Button(icon: .default(icon: .tabNew)).handler { _ = createTab() })
                         .packEnd(TabButton(view: tabView).handler { contentView.showOverview() })
                 )
