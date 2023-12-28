@@ -11,7 +11,7 @@ import CGTUI
 public class EntryRow: PreferencesRow {
 
     /// The handlers for when the entry row gets submitted.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
 
     /// Initialize an entry row.
     /// - Parameter title: The row's title.
@@ -46,7 +46,7 @@ public class EntryRow: PreferencesRow {
     /// - Parameter handler: The handler.
     /// - Returns: The entry row.
     public func submitHandler(_ handler: @escaping () -> Void) -> EntryRow {
-        self.handlers.append(handler)
+        self.handler = handler
         gtui_entryrow_set_show_apply_button(self.nativePtr, true.cBool)
         return self
     }
@@ -68,8 +68,6 @@ public class EntryRow: PreferencesRow {
     gtui_editable_set_contents(self.nativePtr, text.cString)
     }
 
-    /// Execute when the text gets submitted.
-    public func onSubmit() { for handler in handlers { handler() } }
 }
 
 /// Handle when the entry row gets submitted.
@@ -82,5 +80,5 @@ func entryrow_on_submit_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let entryrow = Unmanaged<EntryRow>.fromOpaque(userData).takeUnretainedValue()
-    entryrow.onSubmit()
+    entryrow.handler()
 }

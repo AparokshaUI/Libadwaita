@@ -5,7 +5,7 @@
 Adw.Banner
 
 ## Properties
-### `handlers`
+### `handler`
 
 The handlers for when the button gets clicked.
 
@@ -30,10 +30,6 @@ Add a button to the banner and set its label.
 Add a handler for the banner's button.
 - Parameter action: The handler.
 - Returns: The banner.
-
-### `onClick()`
-
-Run when the button gets clicked.
 
 ### `show()`
 

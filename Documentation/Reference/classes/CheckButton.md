@@ -5,7 +5,7 @@
 Gtk.CheckButton
 
 ## Properties
-### `handlers`
+### `handler`
 
 The handlers for a check button.
 
@@ -35,7 +35,3 @@ Set whether the check button is active.
 
 Set whether the check button is in the inconsistent state.
 - Parameter inconsistent: Whether the check button is in the inconsistent state.
-
-### `onClick()`
-
-Run this when the check button gets clicked.

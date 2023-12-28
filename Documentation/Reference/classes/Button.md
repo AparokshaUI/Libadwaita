@@ -5,7 +5,7 @@
 Gtk.Button
 
 ## Properties
-### `handlers`
+### `handler`
 
 The action handlers.
 
@@ -49,7 +49,3 @@ Set the label for the button.
 
 Get the button content.
 - Returns: The button content.
-
-### `onClick()`
-
-Run when the button gets clicked.

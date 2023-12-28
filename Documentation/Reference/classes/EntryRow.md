@@ -5,7 +5,7 @@
 Adw.EntryRow
 
 ## Properties
-### `handlers`
+### `handler`
 
 The handlers for when the entry row gets submitted.
 
@@ -46,7 +46,3 @@ Get the content of the entry row.
 
 Set the content of the entry row.
 - Parameter text: The new content.
-
-### `onSubmit()`
-
-Execute when the text gets submitted.

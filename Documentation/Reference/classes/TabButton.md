@@ -5,7 +5,7 @@
 Adw.TabButton
 
 ## Properties
-### `handlers`
+### `handler`
 
 The handlers of the button.
 
@@ -20,7 +20,3 @@ Initialize a tab button with a tab view.
 Set the action handler of the tab button.
 - Parameter handler: The action handler.
 - Returns: The tab button.
-
-### `onClick()`
-
-Run when the button gets clicked.

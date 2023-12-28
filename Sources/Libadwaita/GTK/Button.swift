@@ -12,7 +12,7 @@ import Foundation
 public class Button: NativeWidgetPeer {
 
     /// The action handlers.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
     /// The button content, if there is no label set directly.
     var content: ButtonContent?
 
@@ -49,7 +49,7 @@ public class Button: NativeWidgetPeer {
     /// - Parameter handler: The button's handler.
     /// - Returns: The button.
     public func handler(_ handler: @escaping () -> Void) -> Button {
-        self.handlers.append(handler)
+        self.handler = handler
         return self
     }
 
@@ -61,8 +61,6 @@ public class Button: NativeWidgetPeer {
     /// - Returns: The button content.
     public func getContent() -> ButtonContent? { content }
 
-    /// Run when the button gets clicked.
-    public func onClick() { for handler in self.handlers { handler() } }
 }
 
 /// Run when the button gets clicked.
@@ -75,5 +73,5 @@ func button_on_click_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let button = Unmanaged<Button>.fromOpaque(userData).takeUnretainedValue()
-    button.onClick()
+    button.handler()
 }

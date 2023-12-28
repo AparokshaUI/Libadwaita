@@ -11,7 +11,7 @@ import CGTUI
 public class Banner: NativeWidgetPeer {
 
     /// The handlers for when the button gets clicked.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
     /// Whether the banner is revealed.
     public var isRevealed: Bool { gtui_banner_is_revealed(self.nativePtr) != 0 }
 
@@ -36,12 +36,9 @@ public class Banner: NativeWidgetPeer {
     /// - Parameter action: The handler.
     /// - Returns: The banner.
     public func buttonHandler(_ action: @escaping () -> Void) -> Banner {
-        handlers.append(action)
+        handler = action
         return self
     }
-
-    /// Run when the button gets clicked.
-    public func onClick() { for handler in handlers { handler() } }
 
     /// Show the banner.
     public func show() { gtui_banner_set_revealed(self.nativePtr, true.cBool) }
@@ -60,5 +57,5 @@ func banner_on_click_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let banner = Unmanaged<Banner>.fromOpaque(userData).takeUnretainedValue()
-    banner.onClick()
+    banner.handler()
 }

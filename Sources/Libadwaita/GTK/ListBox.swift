@@ -13,7 +13,7 @@ public class ListBox: NativeWidgetPeer, InsertableContainer {
     /// The child widgets.
     private var peers: [NativeWidgetPeer] = []
     /// Handlers for selecting rows.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
 
     override public init() {
         super.init()
@@ -124,12 +124,10 @@ public class ListBox: NativeWidgetPeer, InsertableContainer {
     /// - Parameter handler: The handler.
     /// - Returns: The list box.
     public func handler(_ handler: @escaping () -> Void) -> Self {
-        self.handlers.append(handler)
+        self.handler = handler
         return self
     }
 
-    /// Run this function when a row gets selected.
-    func onSelectRow() { for handler in handlers { handler() } }
 }
 
 /// Run this function when a row gets selected.
@@ -144,5 +142,5 @@ func listbox_on_select_row_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let box = Unmanaged<ListBox>.fromOpaque(userData).takeUnretainedValue()
-    box.onSelectRow()
+    box.handler()
 }

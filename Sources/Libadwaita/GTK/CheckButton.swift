@@ -11,7 +11,7 @@ import CGTUI
 public class CheckButton: NativeWidgetPeer {
 
     /// The handlers for a check button.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
 
     /// Initialize a check button.
     /// - Parameter label: The check button's label.
@@ -26,7 +26,7 @@ public class CheckButton: NativeWidgetPeer {
     /// - Parameter handler: The handler.
     /// - Returns: The check button.
     public func handler(_ handler: @escaping () -> Void) -> CheckButton {
-        self.handlers.append(handler)
+        self.handler = handler
         return self
     }
 
@@ -46,8 +46,6 @@ public class CheckButton: NativeWidgetPeer {
         gtui_checkbutton_set_inconsistent(self.nativePtr, inconsistent.cBool)
     }
 
-    /// Run this when the check button gets clicked.
-    public func onClick() { for handler in self.handlers { handler() } }
 }
 
 /// Run this when the check button gets clicked.
@@ -60,5 +58,5 @@ func checkbutton_on_toggle_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let button = Unmanaged<CheckButton>.fromOpaque(userData).takeUnretainedValue()
-    button.onClick()
+    button.handler()
 }

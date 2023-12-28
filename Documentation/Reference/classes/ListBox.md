@@ -9,7 +9,7 @@ Gtk.ListBox
 
 The child widgets.
 
-### `handlers`
+### `handler`
 
 Handlers for selecting rows.
 
@@ -78,7 +78,3 @@ Set the style of the list box to the sidebar style.
 Add a handler for when the selection changes.
 - Parameter handler: The handler.
 - Returns: The list box.
-
-### `onSelectRow()`
-
-Run this function when a row gets selected.

@@ -11,7 +11,7 @@ import CGTUI
 public class TabButton: NativeWidgetPeer {
 
     /// The handlers of the button.
-    var handlers: [() -> Void] = []
+    var handler: () -> Void = { }
 
     /// Initialize a tab button with a tab view.
     /// - Parameter view: The tab view.
@@ -26,12 +26,10 @@ public class TabButton: NativeWidgetPeer {
     /// - Parameter handler: The action handler.
     /// - Returns: The tab button.
     public func handler(_ handler: @escaping () -> Void) -> TabButton {
-        self.handlers.append(handler)
+        self.handler = handler
         return self
     }
 
-    /// Run when the button gets clicked.
-    public func onClick() { for handler in self.handlers { handler() } }
 }
 
 /// Observe when the tab button gets clicked.
@@ -44,5 +42,5 @@ func tabbutton_on_click_cb(
     userData: UnsafeMutableRawPointer
 ) {
     let button = Unmanaged<TabButton>.fromOpaque(userData).takeUnretainedValue()
-    button.onClick()
+    button.handler()
 }
