@@ -44,7 +44,7 @@ public class Carousel: NativeWidgetPeer, InsertableContainer {
     /// - Returns: The carousel.
     public func insert(_ widget: NativeWidgetPeer, at index: Int) -> Self {
         gtui_carousel_insert(self.nativePtr, widget.nativePtr, index.cInt)
-        self.peers.insert(widget, at: 0)
+        self.peers.insert(widget, at: index)
         return self
     }
 
