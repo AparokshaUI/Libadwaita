@@ -2182,6 +2182,46 @@ gtui_textview_contents (uint64_t textview)
 }
 
 static uint64_t
+gtui_create_overlay ()
+{
+  return (uint64_t)gtk_overlay_new ();
+}
+
+static void
+gtui_overlay_add_overlay (uint64_t overlay, uint64_t widget)
+{
+  g_assert_nonnull (overlay);
+  g_assert_nonnull (widget);
+  g_assert (GTK_IS_OVERLAY (overlay));
+  g_assert (GTK_IS_WIDGET (widget));
+  gtk_overlay_add_overlay (overlay, widget);
+}
+
+static void
+gtui_overlay_set_child (uint64_t overlay, uint64_t widget)
+{
+  g_assert_nonnull (overlay);
+  g_assert_nonnull (widget);
+  g_assert (GTK_IS_OVERLAY (overlay));
+  g_assert (GTK_IS_WIDGET (widget));
+  gtk_overlay_set_child (overlay, widget);
+}
+
+static uint64_t
+gtui_create_progressbar ()
+{
+  return (uint64_t)gtk_progress_bar_new ();
+}
+
+static void
+gtui_progressbar_set_fraction (uint64_t progressbar, double fraction)
+{
+  g_assert_nonnull (progressbar);
+  g_assert (GTK_IS_PROGRESS_BAR (progressbar));
+  gtk_progress_bar_set_fraction (progressbar, fraction);
+}
+
+static uint64_t
 gtui_create_filedialog ()
 {
   return (uint64_t)gtk_file_dialog_new ();

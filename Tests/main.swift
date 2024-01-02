@@ -181,7 +181,15 @@ public class MyApplication: Application {
             NavigationView()
                 .add(contentView, title: "Test")
                 .add(
-                    ToolbarView(StatusPage().title("Navigation View")).addTopBar(HeaderBar()),
+                    ToolbarView(
+                        Overlay()
+                            .child(StatusPage().title("Navigation View"))
+                            .addOverlay(
+                                ProgressBar()
+                                    .fraction(0.5)
+                                    .addStyle("osd")
+                            )
+                    ).addTopBar(HeaderBar()).topBarStyle(.raised),
                     title: "Navigation Page"
                 )
         )
