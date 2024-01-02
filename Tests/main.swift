@@ -235,6 +235,7 @@ public class MyApplication: Application {
     }
 
     override public func onActivate() {
+        print(NativePeer.getUserDataDirectory())
         let win = createWindow()
         let preferencesWindow = PreferencesWindow(parent: win)
         let group = PreferencesGroup(name: "A Group", description: "Description")

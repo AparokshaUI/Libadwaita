@@ -2535,3 +2535,9 @@ gtui_clipboard_copy (const char *text)
   GdkClipboard *clipboard = gdk_display_get_clipboard (gdk_display_get_default ());
   gdk_clipboard_set_text (clipboard, text);
 }
+
+static char *
+gtui_get_user_data_dir ()
+{
+  return g_get_user_data_dir ();
+}
