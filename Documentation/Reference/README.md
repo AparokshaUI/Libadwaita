@@ -94,6 +94,7 @@
 -   [button_on_click_cb(ptr_userData_)](methods/button_on_click_cb(ptr_userData_).md)
 -   [checkbutton_on_toggle_cb(ptr_userData_)](methods/checkbutton_on_toggle_cb(ptr_userData_).md)
 -   [entryrow_on_submit_cb(ptr_userData_)](methods/entryrow_on_submit_cb(ptr_userData_).md)
+-   [entryrow_on_update_cb(ptr_userData_)](methods/entryrow_on_update_cb(ptr_userData_).md)
 -   [filedialog_on_open_cb(ptr_file_userData_)](methods/filedialog_on_open_cb(ptr_file_userData_).md)
 -   [filedialog_on_save_cb(ptr_file_userData_)](methods/filedialog_on_save_cb(ptr_file_userData_).md)
 -   [listbox_on_select_row_cb(ptr_rowPtr_userData_)](methods/listbox_on_select_row_cb(ptr_rowPtr_userData_).md)

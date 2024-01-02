@@ -9,6 +9,10 @@ Adw.EntryRow
 
 The handlers for when the entry row gets submitted.
 
+### `updateHandler`
+
+The handler for when the entry row's text changes.
+
 ## Methods
 ### `init(title:)`
 
@@ -46,3 +50,9 @@ Get the content of the entry row.
 
 Set the content of the entry row.
 - Parameter text: The new content.
+
+### `changeHandler(_:)`
+
+Observe updates in the written text.
+- Parameter handler: The handler.
+- Returns: The entry row.

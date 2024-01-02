@@ -302,6 +302,7 @@ public class MyApplication: Application {
                 )
         )
         let entryRow = EntryRow(title: "Entry Row")
+            .changeHandler { print("Update!") }
         let passwordEntryRow = PasswordEntryRow(title: "Password Entry Row")
         preferencesWindow.add(
             page: .init(name: "World", icon: .default(icon: .faceCool), description: "Cool!")

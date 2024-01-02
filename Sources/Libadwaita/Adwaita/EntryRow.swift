@@ -12,6 +12,8 @@ public class EntryRow: PreferencesRow {
 
     /// The handlers for when the entry row gets submitted.
     var handler: () -> Void = { }
+    /// The handler for when the entry row's text changes.
+    var updateHandler: () -> Void = { }
 
     /// Initialize an entry row.
     /// - Parameter title: The row's title.
@@ -65,7 +67,15 @@ public class EntryRow: PreferencesRow {
     /// Set the content of the entry row.
     /// - Parameter text: The new content.
     public func setContents(_ text: String) {
-    gtui_editable_set_contents(self.nativePtr, text.cString)
+        gtui_editable_set_contents(self.nativePtr, text.cString)
+    }
+
+    /// Observe updates in the written text.
+    /// - Parameter handler: The handler.
+    /// - Returns: The entry row.
+    public func changeHandler(_ handler: @escaping () -> Void) -> EntryRow {
+        self.updateHandler = handler
+        return self
     }
 
 }
@@ -81,4 +91,17 @@ func entryrow_on_submit_cb(
 ) {
     let entryrow = Unmanaged<EntryRow>.fromOpaque(userData).takeUnretainedValue()
     entryrow.handler()
+}
+
+/// Handle when the entry row gets updated.
+/// - Parameters:
+///   - ptr: The pointer.
+///   - userData: The entry row data.
+@_cdecl("entryrow_on_update_cb")
+func entryrow_on_update_cb(
+    ptr: UnsafeMutableRawPointer,
+    userData: UnsafeMutableRawPointer
+) {
+    let entryrow = Unmanaged<EntryRow>.fromOpaque(userData).takeUnretainedValue()
+    entryrow.updateHandler()
 }

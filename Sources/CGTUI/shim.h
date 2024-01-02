@@ -20,6 +20,8 @@ checkbutton_on_toggle_cb (void *, void *);
 static void
 entryrow_on_submit_cb (void *, void *);
 static void
+entryrow_on_update_cb (void *, void *);
+static void
 filedialog_on_open_cb (void *, void *, void *);
 static void
 filedialog_on_save_cb (void *, void *, void *);
@@ -1025,6 +1027,7 @@ gtui_entryrow_init_signals (uint64_t er, uint64_t data)
   entryrow = ADW_ENTRY_ROW (er);
   swift_retain (data);
   g_signal_connect (entryrow, "apply", G_CALLBACK (entryrow_on_submit_cb), (void *)data);
+  g_signal_connect (entryrow, "changed", G_CALLBACK (entryrow_on_update_cb), (void *)data);
 }
 
 static void
