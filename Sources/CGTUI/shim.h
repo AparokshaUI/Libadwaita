@@ -885,16 +885,29 @@ gtui_preferencespage_add (uint64_t page, uint64_t group)
 }
 
 static uint64_t
-gtui_create_preferencesgroup (const char *name, const char *description)
+gtui_create_preferencesgroup ()
 {
-  g_assert_nonnull (name);
+  return (uint64_t)adw_preferences_group_new ();
+}
+
+static void
+gtui_preferencesgroup_set_title (uint64_t preferencesgroup, const char *title)
+{
+  g_assert_nonnull (preferencesgroup);
+  g_assert_nonnull (title);
+  g_assert (ADW_IS_PREFERENCES_GROUP (ADW_PREFERENCES_GROUP ((void *)preferencesgroup)));
+
+  adw_preferences_group_set_title (preferencesgroup, title);
+}
+
+static void
+gtui_preferencesgroup_set_description (uint64_t preferencesgroup, const char *description)
+{
+  g_assert_nonnull (preferencesgroup);
   g_assert_nonnull (description);
+  g_assert (ADW_IS_PREFERENCES_GROUP (ADW_PREFERENCES_GROUP ((void *)preferencesgroup)));
 
-  AdwPreferencesGroup *group = ADW_PREFERENCES_GROUP (adw_preferences_group_new ());
-  adw_preferences_group_set_title (group, name);
-  adw_preferences_group_set_description (group, description);
-
-  return group;
+  adw_preferences_group_set_description (preferencesgroup, description);
 }
 
 static void

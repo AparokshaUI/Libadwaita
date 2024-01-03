@@ -16,7 +16,9 @@ public class PreferencesGroup: NativeWidgetPeer {
     ///   - description: The preferences group's description.
     public init(name: String, description: String) {
         super.init()
-        self.nativePtr = gtui_create_preferencesgroup(name.cString, description.cString)
+        self.nativePtr = gtui_create_preferencesgroup()
+        _ = title(name)
+        _ = self.description(description)
     }
 
     /// Set the header suffix.
@@ -34,4 +36,21 @@ public class PreferencesGroup: NativeWidgetPeer {
         gtui_preferencesgroup_add(self.nativePtr, widget.nativePtr)
         return self
     }
+
+    /// Set the title of the preferences group.
+    /// - Parameter title: The group's title.
+    /// - Returns: The preferences group.
+    public func title(_ title: String) -> PreferencesGroup {
+        gtui_preferencesgroup_set_title(self.nativePtr, title.cString)
+        return self
+    }
+
+    /// Set the description of the preferences group.
+    /// - Parameter description: The group's description.
+    /// - Returns: The preferences group.
+    public func description(_ description: String) -> PreferencesGroup {
+        gtui_preferencesgroup_set_description(self.nativePtr, description.cString)
+        return self
+    }
+
 }
