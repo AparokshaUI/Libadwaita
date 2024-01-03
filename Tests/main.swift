@@ -296,10 +296,14 @@ public class MyApplication: Application {
                                         )
                                 )
                                 .addRow(ActionRow(title: "Row 2", subtitle: "Description"))
-                                .addRow(SwitchRow(title: "Switch Row", subtitle: "Description"))
+                                .addRow(
+                                    SwitchRow(title: "Switch Row", subtitle: "Description")
+                                        .onChange { print("New Value") }
+                                )
                                 .addRow(
                                     SpinRow(title: "Spin Row", subtitle: "Description", min: 0, max: 10, step: 0.5)
                                         .configuration(min: -10, max: 10, step: 2)
+                                        .onChange { print("New Value") }
                                 )
                         )
                 )

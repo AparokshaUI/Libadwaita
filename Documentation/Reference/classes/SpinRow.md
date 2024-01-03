@@ -4,6 +4,11 @@
 
 Adw.SpinRow
 
+## Properties
+### `handler`
+
+The handler for when the spin row's value changes.
+
 ## Methods
 ### `init(title:subtitle:min:max:step:)`
 
@@ -37,3 +42,9 @@ Get a spin row's value.
 
 Set a spin row's value.
 - Parameter value: The value.
+
+### `onChange(handler:)`
+
+Set the handler for when the value changes.
+- Parameter handler: The handler.
+- Returns: The spin row.

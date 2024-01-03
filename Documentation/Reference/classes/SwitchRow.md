@@ -4,6 +4,11 @@
 
 Adw.SwitchRow
 
+## Properties
+### `handler`
+
+The handler for when the row's value changes.
+
 ## Methods
 ### `init(title:subtitle:)`
 
@@ -25,3 +30,9 @@ Get whether the switch is active.
 
 Set whether the switch is active.
 - Parameter active: Whether the switch is active.
+
+### `onChange(handler:)`
+
+Set the handler for when the value changes.
+- Parameter handler: The handler.
+- Returns: The switch row.

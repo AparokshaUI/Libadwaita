@@ -101,6 +101,8 @@
 -   [listbox_on_select_row_cb(ptr_rowPtr_userData_)](methods/listbox_on_select_row_cb(ptr_rowPtr_userData_).md)
 -   [messagedialog_on_click_cb(ptr_response_userData_)](methods/messagedialog_on_click_cb(ptr_response_userData_).md)
 -   [on_click_cb(ptr_numberOfPress_xCoordinate_yCoordinate_userData_)](methods/on_click_cb(ptr_numberOfPress_xCoordinate_yCoordinate_userData_).md)
+-   [spinrow_on_change_cb(ptr_parameter_userData_)](methods/spinrow_on_change_cb(ptr_parameter_userData_).md)
+-   [switchrow_on_change_cb(ptr_parameter_userData_)](methods/switchrow_on_change_cb(ptr_parameter_userData_).md)
 -   [tabbutton_on_click_cb(ptr_userData_)](methods/tabbutton_on_click_cb(ptr_userData_).md)
 -   [taboverview_on_create_tab_cb(ptr_userData_)](methods/taboverview_on_create_tab_cb(ptr_userData_).md)
 -   [toast_on_click_cb(ptr_userData_)](methods/toast_on_click_cb(ptr_userData_).md)

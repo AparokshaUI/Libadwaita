@@ -32,6 +32,10 @@ messagedialog_on_click_cb (void *, void *, void *);
 static void
 on_click_cb (void *, void *, void *, void *, void *);
 static void
+spinrow_on_change_cb (void *, void *, void *);
+static void
+switchrow_on_change_cb (void *, void *, void *);
+static void
 splitbutton_on_click_cb (void *, void *);
 static uint64_t
 taboverview_on_create_tab_cb (void *, void *);
@@ -1117,6 +1121,20 @@ gtui_create_switchrow ()
   return (uint64_t)adw_switch_row_new ();
 }
 
+static void
+gtui_switchrow_init_signals (uint64_t sr, uint64_t data)
+{
+  AdwSwitchRow *switchrow;
+
+  g_assert_nonnull (sr);
+  g_assert_nonnull (data);
+  g_assert (ADW_IS_SWITCH_ROW (ADW_SWITCH_ROW ((void *)sr)));
+
+  switchrow = ADW_SWITCH_ROW (sr);
+  swift_retain (data);
+  g_signal_connect (switchrow, "notify::active", G_CALLBACK (switchrow_on_change_cb), (void *)data);
+}
+
 static gboolean
 gtui_switchrow_get_active (uint64_t switchrow)
 {
@@ -1139,6 +1157,20 @@ static uint64_t
 gtui_create_spinrow (double min, double max, double step)
 {
   return (uint64_t)adw_spin_row_new_with_range (min, max, step);
+}
+
+static void
+gtui_spinrow_init_signals (uint64_t sr, uint64_t data)
+{
+  AdwSpinRow *spinrow;
+
+  g_assert_nonnull (sr);
+  g_assert_nonnull (data);
+  g_assert (ADW_IS_SPIN_ROW (ADW_SPIN_ROW ((void *)sr)));
+
+  spinrow = ADW_SPIN_ROW (sr);
+  swift_retain (data);
+  g_signal_connect (spinrow, "notify::value", G_CALLBACK (spinrow_on_change_cb), (void *)data);
 }
 
 static void
