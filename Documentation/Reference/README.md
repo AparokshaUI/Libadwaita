@@ -93,6 +93,7 @@
 -   [banner_on_click_cb(ptr_userData_)](methods/banner_on_click_cb(ptr_userData_).md)
 -   [button_on_click_cb(ptr_userData_)](methods/button_on_click_cb(ptr_userData_).md)
 -   [checkbutton_on_toggle_cb(ptr_userData_)](methods/checkbutton_on_toggle_cb(ptr_userData_).md)
+-   [comborow_on_change_cb(ptr_parameter_userData_)](methods/comborow_on_change_cb(ptr_parameter_userData_).md)
 -   [entryrow_on_submit_cb(ptr_userData_)](methods/entryrow_on_submit_cb(ptr_userData_).md)
 -   [entryrow_on_update_cb(ptr_userData_)](methods/entryrow_on_update_cb(ptr_userData_).md)
 -   [filedialog_on_open_cb(ptr_file_userData_)](methods/filedialog_on_open_cb(ptr_file_userData_).md)

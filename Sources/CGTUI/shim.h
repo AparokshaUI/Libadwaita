@@ -18,6 +18,8 @@ button_on_click_cb (void *, void *);
 static void
 checkbutton_on_toggle_cb (void *, void *);
 static void
+comborow_on_change_cb (void *, void *, void *);
+static void
 entryrow_on_submit_cb (void *, void *);
 static void
 entryrow_on_update_cb (void *, void *);
@@ -969,6 +971,37 @@ gtui_create_comborow (uint64_t list)
   AdwComboRow *row = ADW_COMBO_ROW (adw_combo_row_new ());
   adw_combo_row_set_model (row, list);
   return row;
+}
+
+static void
+gtui_comborow_init_signals (uint64_t cr, uint64_t data)
+{
+  AdwComboRow *comborow;
+
+  g_assert_nonnull (cr);
+  g_assert_nonnull (data);
+  g_assert (ADW_IS_COMBO_ROW (ADW_COMBO_ROW ((void *)cr)));
+
+  comborow = ADW_COMBO_ROW (cr);
+  swift_retain (data);
+  g_signal_connect (comborow, "notify::selected", G_CALLBACK (comborow_on_change_cb), (void *)data);
+}
+
+static char *
+gtui_comborow_get_selected (uint64_t row, uint64_t list)
+{
+  g_assert (ADW_IS_COMBO_ROW (ADW_COMBO_ROW ((void *)row)));
+  g_assert (GTK_IS_STRING_LIST (GTK_STRING_LIST ((void *)list)));
+
+  return gtk_string_list_get_string (list, adw_combo_row_get_selected (row));
+}
+
+static void
+gtui_comborow_set_selected (uint64_t row, int position)
+{
+  g_assert (ADW_IS_COMBO_ROW (ADW_COMBO_ROW ((void *)row)));
+
+  adw_combo_row_set_selected (row, position);
 }
 
 static uint64_t
@@ -2137,6 +2170,14 @@ gtui_stringlist_append (uint64_t list, const char *str)
   g_assert (GTK_IS_STRING_LIST (list));
 
   gtk_string_list_take (list, strdup (str));
+}
+
+static void
+gtui_stringlist_remove (uint64_t list, int position)
+{
+  g_assert (GTK_IS_STRING_LIST (list));
+
+  gtk_string_list_remove (list, position);
 }
 
 static void

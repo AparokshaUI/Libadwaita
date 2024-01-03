@@ -252,13 +252,16 @@ public class MyApplication: Application {
         let stack = Stack().append(content1, transition: .slideUp)
             .append(content2, transition: .slideUp)
         preferencesWindow.setDefaultSize(width: 500, height: 400)
+        let combo = ComboRow(title: "ComboRow", subtitle: "Description")
         preferencesWindow.add(
             page: .init(name: "Hello", icon: .default(icon: .daytimeSunrise), description: "Hello world?")
                 .add(
                     group: group
                         .add(ActionRow(title: "ActionRow", subtitle: "Description").addSuffix(stack))
                         .add(
-                            ComboRow(title: "ComboRow", subtitle: "Description").append("Hello").append("World")
+                            combo.append("Hello").append("World").onChange {
+                                print(combo.selected())
+                            }
                         )
                         .headerSuffix(
                             Button("Add")
