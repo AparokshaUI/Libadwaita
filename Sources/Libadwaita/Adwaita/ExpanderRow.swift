@@ -44,4 +44,12 @@ public class ExpanderRow: PreferencesRow {
         gtui_expanderrow_add_row(self.nativePtr, row.nativePtr)
         return self
     }
+
+    /// Remove a child row from the expander row.
+    /// - Parameter row: The child row.
+    /// - Returns: The expander row.
+    public func removeRow(_ row: NativeWidgetPeer) -> ExpanderRow {
+        gtui_expanderrow_remove_row(self.nativePtr, row.nativePtr)
+        return self
+    }
 }

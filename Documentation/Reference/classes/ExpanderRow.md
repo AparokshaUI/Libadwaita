@@ -29,3 +29,9 @@ Add a prefix to the expander row.
 Add a child row to the expander row.
 - Parameter row: The child row.
 - Returns: The expander row.
+
+### `removeRow(_:)`
+
+Remove a child row from the expander row.
+- Parameter row: The child row.
+- Returns: The expander row.

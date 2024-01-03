@@ -1042,6 +1042,17 @@ gtui_expanderrow_add_row (uint64_t expanderrow, uint64_t widget)
   adw_expander_row_add_row (expanderrow, widget);
 }
 
+static void
+gtui_expanderrow_remove_row (uint64_t expanderrow, uint64_t widget)
+{
+  g_assert_nonnull (expanderrow);
+  g_assert_nonnull (widget);
+  g_assert (ADW_IS_EXPANDER_ROW (ADW_EXPANDER_ROW ((void *)expanderrow)));
+  g_assert (GTK_IS_WIDGET (GTK_WIDGET ((void *)widget)));
+
+  adw_expander_row_remove (expanderrow, widget);
+}
+
 static uint64_t
 gtui_create_entryrow ()
 {
