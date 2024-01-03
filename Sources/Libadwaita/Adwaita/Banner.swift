@@ -24,6 +24,14 @@ public class Banner: NativeWidgetPeer {
         gtui_banner_init_signals(self.nativePtr, selfAddr)
     }
 
+    /// Edit the banner's label.
+    /// - Parameter title: The label.
+    /// - Returns: The banner.
+    public func title(_ title: String) -> Banner {
+        gtui_banner_set_title(self.nativePtr, title.cString)
+        return self
+    }
+
     /// Add a button to the banner and set its label.
     /// - Parameter title: The label.
     /// - Returns: The banner.

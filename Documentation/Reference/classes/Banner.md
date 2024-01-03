@@ -19,6 +19,12 @@ Whether the banner is revealed.
 Initialize a banner.
 - Parameter title: The banner's label.
 
+### `title(_:)`
+
+Edit the banner's label.
+- Parameter title: The label.
+- Returns: The banner.
+
 ### `buttonLabel(_:)`
 
 Add a button to the banner and set its label.

@@ -707,6 +707,16 @@ gtui_banner_init_signals (uint64_t bnr, uint64_t data)
 }
 
 static void
+gtui_banner_set_title (uint64_t banner, const char *title)
+{
+  g_assert_nonnull (banner);
+  g_assert_nonnull (title);
+  g_assert (ADW_IS_BANNER (ADW_BANNER ((void *)banner)));
+
+  adw_banner_set_title (banner, strdup (title));
+}
+
+static void
 gtui_banner_set_button (uint64_t banner, const char *title)
 {
   g_assert_nonnull (banner);
