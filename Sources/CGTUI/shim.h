@@ -2286,6 +2286,22 @@ gtui_listbox_remove (uint64_t box, uint64_t widget)
   gtk_list_box_remove ((GtkListBox *)box, parent);
 }
 
+static void
+gtui_listbox_set_no_selection (uint64_t box, gboolean no_selection)
+{
+  g_assert_nonnull (box);
+  g_assert (GTK_IS_LIST_BOX (GTK_LIST_BOX ((void *)box)));
+
+  if (no_selection)
+    {
+      gtk_list_box_set_selection_mode (box, GTK_SELECTION_NONE);
+    }
+  else
+    {
+      gtk_list_box_set_selection_mode (box, GTK_SELECTION_SINGLE);
+    }
+}
+
 static char *
 gtui_stringlist_get_selected (uint64_t dropdown, uint64_t list)
 {

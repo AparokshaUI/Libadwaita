@@ -128,6 +128,14 @@ public class ListBox: NativeWidgetPeer, InsertableContainer {
         return self
     }
 
+    /// Choose whether to use the single selection or no selection mode.
+    /// - Parameter noSelection: Whether to use the no selection mode.
+    /// - Returns: The list.
+    public func noSelection(_ noSelection: Bool = true) -> Self {
+        gtui_listbox_set_no_selection(self.nativePtr, noSelection.cBool)
+        return self
+    }
+
 }
 
 /// Run this function when a row gets selected.

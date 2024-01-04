@@ -78,3 +78,9 @@ Set the style of the list box to the sidebar style.
 Add a handler for when the selection changes.
 - Parameter handler: The handler.
 - Returns: The list box.
+
+### `noSelection(_:)`
+
+Choose whether to use the single selection or no selection mode.
+- Parameter noSelection: Whether to use the no selection mode.
+- Returns: The list.
