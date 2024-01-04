@@ -9,16 +9,13 @@ import CGTUI
 import Foundation
 
 /// Gtk.Label
-public class MarkupLabel: NativeWidgetPeer {
+public class MarkupLabel: Label {
 
     /// Initialize a markup label.
     /// - Parameter text: The content.
-    public init(_ text: String) {
+    override public init(_ text: String) {
         super.init()
         self.nativePtr = gtui_create_markup_label(text.cString)
     }
 
-    /// Set the text of a markup label.
-    /// - Parameter text: The text.
-    public func setText(_ text: String) { gtui_label_set_text(self.nativePtr, text.cString) }
 }

@@ -388,6 +388,14 @@ gtui_create_markup_label (const char *label)
   return lbl;
 }
 
+static void
+gtui_label_set_wrap (uint64_t label, gboolean wrap)
+{
+  g_assert_nonnull (label);
+  g_assert (GTK_IS_LABEL (label));
+  gtk_label_set_wrap (label, wrap);
+}
+
 static uint64_t
 gtui_create_headerbar ()
 {
