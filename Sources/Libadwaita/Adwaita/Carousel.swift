@@ -67,6 +67,14 @@ public class Carousel: NativeWidgetPeer, InsertableContainer {
     /// - Returns: The carousel.
     public func getContent() -> [NativeWidgetPeer] { self.peers }
 
+    /// Allow swiping more than one page at a time.
+    /// - Parameter longSwipes: Allow long swiping.
+    /// - Returns: The carousel.
+    public func longSwipes(_ longSwipes: Bool = true) -> Carousel {
+        gtui_carousel_allow_long_swipes(self.nativePtr, longSwipes.cBool)
+        return self
+    }
+
     /// Add indicator dots to the carousel.
     /// - Parameter top: Whether the dots should be at the top.
     /// - Returns: The carousel and the dots.

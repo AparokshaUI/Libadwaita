@@ -50,6 +50,12 @@ Remove all widgets.
 Get the content widgets.
 - Returns: The carousel.
 
+### `longSwipes(_:)`
+
+Allow swiping more than one page at a time.
+- Parameter longSwipes: Allow long swiping.
+- Returns: The carousel.
+
 ### `addIndicatorDots(top:)`
 
 Add indicator dots to the carousel.

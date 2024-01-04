@@ -1794,6 +1794,15 @@ gtui_carousel_remove (uint64_t carousel, uint64_t widget)
   adw_carousel_remove (carousel, widget);
 }
 
+static void
+gtui_carousel_allow_long_swipes (uint64_t carousel, gboolean long_swipes)
+{
+  g_assert_nonnull (carousel);
+  g_assert (ADW_IS_CAROUSEL (ADW_CAROUSEL ((void *)carousel)));
+
+  adw_carousel_set_allow_long_swipes (carousel, long_swipes);
+}
+
 static uint64_t
 gtui_create_carouselindicatordots (uint64_t carousel)
 {

@@ -135,7 +135,7 @@ public class MyApplication: Application {
                                     .append(TextDropDown().append("FOO").append("BAR"))
                                     .frame(maxSize: 400)
                             )
-                            .append(carousel.addIndicatorDots())
+                            .append(carousel.longSwipes().addIndicatorDots())
                             .padding()
                             .vexpand()
             )
