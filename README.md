@@ -1,3 +1,7 @@
+> [!NOTE]
+> This project is no longer maintained.
+> An alternative is the declarative framework [Adwaita for Swift](https://github.com/AparokshaUI/adwaita-swift).
+
 <p align="center">
   <img width="256" alt="Libadwaita Icon" src="Icons/LibadwaitaIcon.png">
   <h1 align="center">Libadwaita</h1>
